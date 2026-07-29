@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rahul Devsoth — DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0C1424;--panel:#151E33;--panel-2:#1B2740;--grid:#1E2C48;--line:#26365A;
+    --text:#DCE4F2;--muted:#7E8CA8;--faint:#586687;
+    --accent:#38E1B0;--accent-dim:#1F8C71;--amber:#FFC24B;
+    --display:"Space Grotesk",sans-serif;--body:"IBM Plex Sans",sans-serif;--mono:"IBM Plex Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:44px 44px;background-position:center top;}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:9px;}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent);opacity:.7}
+  header.bar{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(12,20,36,.72);border-bottom:1px solid var(--line);}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:.02em}
+  .brand span{color:var(--accent)}
+  nav.links{display:flex;gap:26px}
+  nav.links a{font-family:var(--mono);font-size:13px;color:var(--muted);transition:color .2s}
+  nav.links a:hover,nav.links a:focus-visible{color:var(--text)}
+  .status-pill{font-family:var(--mono);font-size:12px;color:var(--accent);border:1px solid var(--accent-dim);border-radius:100px;padding:5px 12px;display:inline-flex;align-items:center;gap:7px;}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(56,225,176,.6);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(56,225,176,.5)}70%{box-shadow:0 0 0 8px rgba(56,225,176,0)}100%{box-shadow:0 0 0 0 rgba(56,225,176,0)}}
+  .hero{padding:96px 0 60px}
+  .hero .eyebrow{margin-bottom:22px}
+  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(38px,6.4vw,72px);line-height:1.02;letter-spacing:-.02em;margin-bottom:20px;}
+  .hero h1 .accent{color:var(--accent)}
+  .hero .lede{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:620px;margin-bottom:34px}
+  .hero .lede strong{color:var(--text);font-weight:600}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .btn{font-family:var(--mono);font-size:14px;font-weight:500;padding:12px 20px;border-radius:6px;display:inline-flex;align-items:center;gap:9px;transition:transform .15s,background .2s,border-color .2s;}
+  .btn-primary{background:var(--accent);color:#052018;font-weight:600}
+  .btn-primary:hover,.btn-primary:focus-visible{transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--text)}
+  .btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--accent);color:var(--accent)}
+  .pipeline-shell{margin-top:56px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(180deg,var(--panel),rgba(21,30,51,.5));padding:26px 24px 30px;position:relative;overflow:hidden;}
+  .pipeline-shell .plabel{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:22px;display:flex;justify-content:space-between;}
+  .pipeline{display:flex;align-items:stretch;gap:0;position:relative}
+  .stage{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:2}
+  .node{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--panel-2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px;color:var(--muted);transition:all .4s;}
+  .stage .name{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center;transition:color .4s}
+  .stage .idx{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.1em}
+  .connector{position:absolute;top:22px;height:2px;background:var(--line);z-index:1}
+  .stage.lit .node{border-color:var(--accent);background:rgba(56,225,176,.12);color:var(--accent);box-shadow:0 0 18px rgba(56,225,176,.25)}
+  .stage.lit .name{color:var(--text)}
+  .flow{position:absolute;top:21px;left:0;height:3px;background:linear-gradient(90deg,rgba(56,225,176,.15),var(--accent));z-index:1;border-radius:2px;transform-origin:left center;transform:scaleX(0);animation:flow 6s linear infinite}
+  @keyframes flow{0%{transform:scaleX(0);opacity:0}6%{opacity:1}90%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+  section{padding:74px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:12px}
+  .sec-head h2{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.01em}
+  .sec-head .count{font-family:var(--mono);font-size:13px;color:var(--faint)}
+  .projects{display:grid;gap:20px}
+  .proj{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:26px 26px 24px;transition:border-color .25s,transform .25s;position:relative;}
+  .proj:hover{border-color:var(--accent-dim);transform:translateY(-3px)}
+  .proj .meta{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.06em;margin-bottom:12px}
+  .proj .meta b{color:var(--accent);font-weight:500}
+  .proj h3{font-family:var(--display);font-weight:600;font-size:22px;margin-bottom:10px}
+  .proj p{color:var(--muted);font-size:15px;margin-bottom:18px;max-width:74ch}
+  .metrics{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:18px}
+  .metric .v{font-family:var(--display);font-weight:700;font-size:19px;color:var(--accent)}
+  .metric .k{font-family:var(--mono);font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em}
+  .tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tag{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:4px 10px;background:var(--panel-2)}
+  .skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .skillcard{border:1px solid var(--line);border-radius:10px;padding:22px;background:var(--panel)}
+  .skillcard h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:500}
+  .skillcard ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .skillcard li{font-size:14.5px;color:var(--text);display:flex;align-items:center;gap:10px}
+  .skillcard li::before{content:"›";color:var(--accent);font-family:var(--mono)}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .infocard{border:1px solid var(--line);border-radius:10px;padding:24px;background:var(--panel)}
+  .infocard .badge{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.08em;margin-bottom:10px}
+  .infocard .t{font-family:var(--display);font-weight:600;font-size:19px;margin-bottom:6px}
+  .infocard .s{font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:8px}
+  .infocard p{color:var(--muted);font-size:14.5px}
+  .contact{text-align:center;padding:90px 0}
+  .contact h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,52px);letter-spacing:-.02em;margin-bottom:18px}
+  .contact p{color:var(--muted);max-width:520px;margin:0 auto 34px;font-size:17px}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  footer{border-top:1px solid var(--line);padding:28px 0}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer span{font-family:var(--mono);font-size:12.5px;color:var(--faint)}
+  @media (max-width:760px){.twocol{grid-template-columns:1fr}}
+  @media (max-width:720px){
+    .wrap{padding:0 20px}
+    nav.links{display:none}
+    .hero{padding:60px 0 44px}
+    .hero h1{font-size:clamp(32px,8.6vw,56px)}
+    .hero .lede{font-size:16px}
+    section{padding:56px 0}
+    .pipeline{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 10px;justify-content:center}
+    .stage{flex:none}
+    .connector,.flow{display:none}
+    .metrics{gap:18px}
+    .metric .v{font-size:17px}
+    .pipeline-shell{padding:22px 16px 24px}
+    .pipeline-shell .plabel{font-size:10px}
+    .bar .wrap{gap:10px}
+    .brand{font-size:14px}
+    .status-pill{font-size:11px;padding:4px 10px}
+    .proj{padding:22px 20px 20px}
+    .proj h3{font-size:20px}
+    .contact{padding:64px 0}
+    .cta-row .btn,.contact-links .btn{font-size:13px;padding:11px 16px}
+  }
+  @media (max-width:400px){
+    .pipeline{grid-template-columns:repeat(2,1fr)}
+    .brand span{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <div class="brand">rahul<span>.devsoth</span></div>
+    <nav class="links">
+      <a href="#work">work</a><a href="#stack">stack</a><a href="#more">about</a><a href="#contact">contact</a>
+    </nav>
+    <span class="status-pill"><span class="dot"></span>immediate joiner</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero" id="top">
+    <span class="eyebrow">DevOps Engineer · 4+ yrs · AWS · Kubernetes · Terraform</span>
+    <h1>Regulated systems,<br>shipped through<br>pipelines that <span class="accent">hold.</span></h1>
+    <p class="lede">I build and operate cloud-native delivery for high-availability, compliance-bound platforms — <strong>AWS, Kubernetes, Terraform, CI/CD</strong> — with observability and audit trails wired in. Recently: a multi-region, HIPAA-compliant healthcare platform and GPU infrastructure for self-hosted AI, all managed as code.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contact">Get in touch →</a>
+      <a class="btn btn-ghost" href="https://drive.google.com/uc?export=download&amp;id=19Zo36dVX3EIopAw5tbcAYvY-VZK-WR_H">Download résumé</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/rahuldevsoth" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+
+    <div class="pipeline-shell" aria-label="Six-stage CI/CD pipeline">
+      <div class="plabel"><span>pipeline · delivery.yaml</span><span>status: passing</span></div>
+      <div class="pipeline" id="pipeline">
+        <div class="connector" id="conn"></div>
+        <div class="flow" id="flow"></div>
+        <div class="stage"><div class="node">⬆</div><div class="name">Code Push</div><div class="idx">01</div></div>
+        <div class="stage"><div class="node">⚙</div><div class="name">Build</div><div class="idx">02</div></div>
+        <div class="stage"><div class="node">✓</div><div class="name">Test</div><div class="idx">03</div></div>
+        <div class="stage"><div class="node">⛨</div><div class="name">Scan</div><div class="idx">04</div></div>
+        <div class="stage"><div class="node">▲</div><div class="name">Deploy</div><div class="idx">05</div></div>
+        <div class="stage"><div class="node">◎</div><div class="name">Verify</div><div class="idx">06</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="sec-head"><h2>Selected work</h2><span class="count">at Techwave · 2022–present</span></div>
+    <div class="projects">
+
+      <article class="proj">
+        <div class="meta">kind: <b>Platform</b> · client: Vytier (HCBS) · compliance: HIPAA</div>
+        <h3>Multi-region HIPAA Homecare Platform</h3>
+        <p>Built a multi-region AWS platform on a 5-layer Terraform architecture — EKS, RDS PostgreSQL, and reusable networking modules with scalable remote state. Delivered GitHub Actions CI/CD for Spring Boot, Flutter, and React services with automated EKS deploys and approval-gated environment promotion. Centralized logging, monitoring, and audit trails via OpenObserve, Fluent Bit, CloudWatch, and CloudTrail to support HIPAA compliance. Automated ephemeral Terraform environments for cost-efficient nightly testing, provisioned GPU infra for an Ollama AI chatbot, and ran GitOps feature-flag rollouts with Flipt plus DKIM/SPF/DMARC email via Brevo and Kubernetes Secrets.</p>
+        <div class="metrics">
+          <div class="metric"><div class="v">Multi-region</div><div class="k">AWS</div></div>
+          <div class="metric"><div class="v">5-layer</div><div class="k">Terraform IaC</div></div>
+          <div class="metric"><div class="v">HIPAA</div><div class="k">audit &amp; logging</div></div>
+          <div class="metric"><div class="v">3 services</div><div class="k">Spring · Flutter · React</div></div>
+        </div>
+        <div class="tags"><span class="tag">EKS</span><span class="tag">Terraform</span><span class="tag">GitHub Actions</span><span class="tag">RDS PostgreSQL</span><span class="tag">OpenObserve</span><span class="tag">Fluent Bit</span><span class="tag">Flipt</span><span class="tag">Ollama</span></div>
+      </article>
+
+      <article class="proj">
+        <div class="meta">kind: <b>Infrastructure</b> · client: Pavillio (HHAeXchange) · scope: CI/CD + core AWS</div>
+        <h3>CI/CD &amp; Cloud Infrastructure — HHAeXchange</h3>
+        <p>Designed and managed CI/CD pipelines across GoCD, Jenkins, and GitLab for automated build, test, and deployment, with monitoring through Prometheus, Grafana, and the ELK Stack. Provisioned and maintained core AWS infrastructure — EC2, S3, RDS, Auto Scaling, Load Balancers, Security Groups, and VPC — and enforced secure access with IAM users, MFA, and access policies. Set up Route 53 DNS and enabled secure connectivity via VPC peering and VPNs.</p>
+        <div class="metrics">
+          <div class="metric"><div class="v">3 CI tools</div><div class="k">GoCD · Jenkins · GitLab</div></div>
+          <div class="metric"><div class="v">ELK + Grafana</div><div class="k">monitoring</div></div>
+          <div class="metric"><div class="v">IAM + MFA</div><div class="k">access control</div></div>
+        </div>
+        <div class="tags"><span class="tag">GoCD</span><span class="tag">Jenkins</span><span class="tag">GitLab</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">ELK</span><span class="tag">Route 53</span><span class="tag">VPC</span></div>
+      </article>
+
+      <article class="proj">
+        <div class="meta">kind: <b>Application</b> · domain: payments · rail: US Fedwire</div>
+        <h3>Fedwire Payment Adaptor</h3>
+        <p>Built an end-to-end payment rail for US Fedwire bank transfers using Java 8, Tomcat, Jenkins, GitHub, ActiveMQ, JIRA, and Maven — used by financial institutions to identify users and process account payments.</p>
+        <div class="metrics">
+          <div class="metric"><div class="v">Fedwire</div><div class="k">US bank transfers</div></div>
+          <div class="metric"><div class="v">Java 8</div><div class="k">Tomcat · ActiveMQ</div></div>
+          <div class="metric"><div class="v">Production</div><div class="k">financial institutions</div></div>
+        </div>
+        <div class="tags"><span class="tag">Java 8</span><span class="tag">Tomcat</span><span class="tag">ActiveMQ</span><span class="tag">Jenkins</span><span class="tag">Maven</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head"><h2>Stack</h2><span class="count">the tools I reach for</span></div>
+    <div class="skillgrid">
+      <div class="skillcard"><h4>Cloud</h4><ul><li>AWS</li><li>Azure</li><li>EKS · ECS · ECR</li></ul></div>
+      <div class="skillcard"><h4>Infra as Code</h4><ul><li>Terraform (HCL)</li><li>CloudFormation</li><li>Ansible</li><li>Helm</li></ul></div>
+      <div class="skillcard"><h4>CI/CD</h4><ul><li>GitHub Actions</li><li>Jenkins · GoCD</li><li>Azure DevOps</li><li>CodePipeline · CodeBuild</li></ul></div>
+      <div class="skillcard"><h4>Containers</h4><ul><li>Docker</li><li>Kubernetes</li><li>Amazon EKS / ECS</li></ul></div>
+      <div class="skillcard"><h4>Observability</h4><ul><li>Datadog</li><li>Prometheus / Grafana</li><li>ELK · OpenObserve</li><li>Fluent Bit · CloudWatch · CloudTrail</li></ul></div>
+      <div class="skillcard"><h4>Security &amp; Compliance</h4><ul><li>HIPAA automation</li><li>OWASP Dependency-Check</li><li>AWS KMS · IAM · IRSA</li></ul></div>
+      <div class="skillcard"><h4>AI-assisted DevOps</h4><ul><li>IaC authoring &amp; code review</li><li>Runbook generation</li><li>Copilot · Claude · ChatGPT · Gemini</li></ul></div>
+      <div class="skillcard"><h4>Languages</h4><ul><li>Java (Advanced) · Spring Boot</li><li>Shell · HCL</li><li>React · Angular</li></ul></div>
+    </div>
+  </section>
+
+  <section id="more">
+    <div class="sec-head"><h2>About</h2><span class="count">background &amp; recognition</span></div>
+    <div class="twocol">
+      <div class="infocard">
+        <div class="badge">◆ ACHIEVEMENT</div>
+        <div class="t">Techwave AI Hackathon</div>
+        <div class="s">Participant · certificate awarded</div>
+        <p>Built a local Homecare AI assistant answering patient-summary queries, self-hosted with Ollama.</p>
+      </div>
+      <div class="infocard">
+        <div class="badge">◆ EDUCATION</div>
+        <div class="t">B.Tech, Computer Science Engineering</div>
+        <div class="s">RGUKT Basar · 2018–2022</div>
+        <p>Rajiv Gandhi University of Knowledge Technologies.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center;display:flex;margin-bottom:20px">available now</span>
+    <h2>Let's build something<br>that stays up.</h2>
+    <p>Open to DevOps, Platform, and SRE roles. Immediate joiner. Fastest ways to reach me below.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:devsothrahul1138@gmail.com">Email me →</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/rahuldevsoth" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="tel:+917093485914">+91 70934 85914</a>
+      <a class="btn btn-ghost" href="https://drive.google.com/uc?export=download&amp;id=19Zo36dVX3EIopAw5tbcAYvY-VZK-WR_H">Résumé</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Rahul Devsoth — built &amp; deployed by hand.</span>
+    <span>uptime: nominal · region: remote-first</span>
+  </div>
+</footer>
+
+<script>
+  function layoutConnector(){
+    var pipeline=document.getElementById('pipeline');
+    var stages=pipeline.querySelectorAll('.stage');
+    if(stages.length<2)return;
+    var conn=document.getElementById('conn');var flow=document.getElementById('flow');
+    var first=stages[0].querySelector('.node');var last=stages[stages.length-1].querySelector('.node');
+    var fr=first.getBoundingClientRect();var lr=last.getBoundingClientRect();var pr=pipeline.getBoundingClientRect();
+    var left=(fr.left-pr.left)+fr.width/2;var right=(lr.left-pr.left)+lr.width/2;
+    conn.style.left=left+'px';conn.style.width=(right-left)+'px';
+    flow.style.left=left+'px';flow.style.width=(right-left)+'px';
+  }
+  window.addEventListener('resize',layoutConnector);
+  window.addEventListener('load',layoutConnector);
+  layoutConnector();
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stages=document.querySelectorAll('#pipeline .stage');
+  if(reduce){stages.forEach(function(s){s.classList.add('lit')});}
+  else{var i=0;setInterval(function(){if(i===0)stages.forEach(function(s){s.classList.remove('lit')});if(i<stages.length){stages[i].classList.add('lit');}i=(i+1)%(stages.length+2);},1000);}
+</script>
+</body>
+</html>
