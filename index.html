@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rahul Devsoth — DevOps Engineer</title>
+<meta name="description" content="DevOps Engineer with 4+ years building cloud-native delivery on AWS, Kubernetes, and Terraform — multi-region, HIPAA-compliant platforms with CI/CD and observability wired in.">
+<!-- Open Graph / LinkedIn preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rahul Devsoth — DevOps Engineer">
+<meta property="og:description" content="4+ yrs building cloud-native delivery on AWS, Kubernetes & Terraform. Multi-region, HIPAA-compliant platforms with CI/CD and observability wired in.">
+<meta property="og:url" content="https://devsothrahul.github.io/">
+<meta property="og:image" content="https://devsothrahul.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rahul Devsoth — DevOps Engineer">
+<meta name="twitter:description" content="4+ yrs building cloud-native delivery on AWS, Kubernetes & Terraform.">
+<meta name="twitter:image" content="https://devsothrahul.github.io/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -74,6 +87,14 @@
   .metric .k{font-family:var(--mono);font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em}
   .tags{display:flex;gap:8px;flex-wrap:wrap}
   .tag{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:4px 10px;background:var(--panel-2)}
+  .repos{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+  .repo{border:1px solid var(--line);border-radius:10px;padding:20px;background:var(--panel);transition:border-color .2s,transform .2s;display:flex;flex-direction:column;gap:11px}
+  .repo:hover{border-color:var(--accent-dim);transform:translateY(-2px)}
+  .repo .rname{font-family:var(--mono);font-size:14.5px;color:var(--text);font-weight:500;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .repo .rname .gh{color:var(--accent);font-size:16px}
+  .repo .rdesc{font-size:13.5px;color:var(--muted);flex:1;line-height:1.5}
+  .repo .rlang{font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;align-items:center;gap:7px;text-transform:uppercase;letter-spacing:.06em}
+  .repo .rlang::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent)}
   .skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
   .skillcard{border:1px solid var(--line);border-radius:10px;padding:22px;background:var(--panel)}
   .skillcard h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:500}
@@ -130,7 +151,7 @@
   <div class="wrap">
     <div class="brand">rahul<span>.devsoth</span></div>
     <nav class="links">
-      <a href="#work">work</a><a href="#stack">stack</a><a href="#more">about</a><a href="#contact">contact</a>
+      <a href="#work">work</a><a href="#code">code</a><a href="#stack">stack</a><a href="#more">about</a><a href="#contact">contact</a>
     </nav>
     <span class="status-pill"><span class="dot"></span>immediate joiner</span>
   </div>
@@ -144,7 +165,8 @@
     <div class="cta-row">
       <a class="btn btn-primary" href="#contact">Get in touch →</a>
       <a class="btn btn-ghost" href="https://drive.google.com/uc?export=download&amp;id=19Zo36dVX3EIopAw5tbcAYvY-VZK-WR_H">Download résumé</a>
-      <a class="btn btn-ghost" href="https://linkedin.com/in/rahuldevsoth" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/devsothrahul/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/DevsothRahul" target="_blank" rel="noopener">GitHub</a>
     </div>
 
     <div class="pipeline-shell" aria-label="Six-stage CI/CD pipeline">
@@ -206,6 +228,49 @@
     </div>
   </section>
 
+  <section id="code">
+    <div class="sec-head"><h2>On GitHub</h2><span class="count"><a href="https://github.com/DevsothRahul" target="_blank" rel="noopener" style="color:var(--accent)">@DevsothRahul ↗</a></span></div>
+    <div class="repos">
+
+      <a class="repo" href="https://github.com/DevsothRahul/agentic-cicd" target="_blank" rel="noopener">
+        <div class="rname">agentic-cicd <span class="gh">↗</span></div>
+        <div class="rdesc">Agent-driven CI/CD tooling — exploring how automation and LLM-assisted agents can scaffold and run delivery pipelines.</div>
+        <div class="rlang">Go</div>
+      </a>
+
+      <a class="repo" href="https://github.com/DevsothRahul/External-Secrets-Implementation-Flow-in-Kubernetes" target="_blank" rel="noopener">
+        <div class="rname">external-secrets-in-k8s <span class="gh">↗</span></div>
+        <div class="rdesc">Implementation flow for the External Secrets Operator — syncing secrets from external stores into Kubernetes.</div>
+        <div class="rlang">Kubernetes</div>
+      </a>
+
+      <a class="repo" href="https://github.com/DevsothRahul/github-actions-demo-project" target="_blank" rel="noopener">
+        <div class="rname">github-actions-demo <span class="gh">↗</span></div>
+        <div class="rdesc">Hands-on repo for GitHub Actions — automation, CI/CD, and workflow management experiments.</div>
+        <div class="rlang">CI/CD · Java</div>
+      </a>
+
+      <a class="repo" href="https://github.com/DevsothRahul/Springboot-with-aws-eks" target="_blank" rel="noopener">
+        <div class="rname">springboot-with-aws-eks <span class="gh">↗</span></div>
+        <div class="rdesc">Deploying a Spring Boot service to Amazon EKS — containerized workload on managed Kubernetes.</div>
+        <div class="rlang">EKS · Spring Boot</div>
+      </a>
+
+      <a class="repo" href="https://github.com/DevsothRahul/fullstack-eks-react-java" target="_blank" rel="noopener">
+        <div class="rname">fullstack-eks-react-java <span class="gh">↗</span></div>
+        <div class="rdesc">Full-stack React + Java application deployed on EKS — end-to-end from frontend to orchestrated backend.</div>
+        <div class="rlang">JavaScript · Java</div>
+      </a>
+
+      <a class="repo" href="https://github.com/DevsothRahul/spring-boot" target="_blank" rel="noopener">
+        <div class="rname">spring-boot <span class="gh">↗</span></div>
+        <div class="rdesc">Spring Boot CRUD operations — backend fundamentals behind the services I deploy.</div>
+        <div class="rlang">Java</div>
+      </a>
+
+    </div>
+  </section>
+
   <section id="stack">
     <div class="sec-head"><h2>Stack</h2><span class="count">the tools I reach for</span></div>
     <div class="skillgrid">
@@ -246,7 +311,8 @@
     <p>Open to DevOps, Platform, and SRE roles. Immediate joiner. Fastest ways to reach me below.</p>
     <div class="contact-links">
       <a class="btn btn-primary" href="mailto:devsothrahul1138@gmail.com">Email me →</a>
-      <a class="btn btn-ghost" href="https://linkedin.com/in/rahuldevsoth" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/devsothrahul/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/DevsothRahul" target="_blank" rel="noopener">GitHub</a>
       <a class="btn btn-ghost" href="tel:+917093485914">+91 70934 85914</a>
       <a class="btn btn-ghost" href="https://drive.google.com/uc?export=download&amp;id=19Zo36dVX3EIopAw5tbcAYvY-VZK-WR_H">Résumé</a>
     </div>
